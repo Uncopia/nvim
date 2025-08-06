@@ -30,8 +30,10 @@ vim.opt.clipboard       = "unnamedplus"
 -- Use a comma as the <leader> key.  Many of the commands below are bound
 -- using this prefix.  See the “Key bindings” section in the reference
 -- article for rationale【894503498548323†L286-L294】.
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
+vim.keymap.set("n", "<C-s>", ":w<CR>", { desc = "Save file" })
+vim.keymap.set("n", "<C-c>", ":q<CR>", { desc = "Quit window" })
 --//////////////////////////////////////////////////////////////////////////////
 -- Plugin specification
 local plugins = {
@@ -170,7 +172,7 @@ require("blink.cmp").setup({})
 local map = vim.keymap.set
 
 -- Quick access to nvim-tree
-map("n", "<C-t>", ":NvimTreeFocus<CR>")    -- focus the tree
+map("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggles the tree open/closed
 map("n", "<C-f>", ":NvimTreeFindFile<CR>") -- find current file in the tree
 map("n", "<C-c>", ":NvimTreeClose<CR>")    -- close the tree
 
@@ -178,7 +180,7 @@ map("n", "<C-c>", ":NvimTreeClose<CR>")    -- close the tree
 map("n", "<leader>fo", function() require("conform").format() end)
 
 -- Telescope keybindings for quick file and symbol search
-map("n", "<leader>ff", require("telescope.builtin").find_files)
+map("n", "<leader>p", require("telescope.builtin").find_files)
 map("n", "<leader>fg", require("telescope.builtin").live_grep)
 map("n", "<leader>fb", require("telescope.builtin").buffers)
 map("n", "<leader>fh", require("telescope.builtin").help_tags)
