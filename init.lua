@@ -32,8 +32,6 @@ vim.opt.clipboard       = "unnamedplus"
 -- article for rationale【894503498548323†L286-L294】.
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<C-s>", ":w<CR>", { desc = "Save file" })
-vim.keymap.set("n", "<C-c>", ":q<CR>", { desc = "Quit window" })
 --//////////////////////////////////////////////////////////////////////////////
 -- Plugin specification
 local plugins = {
@@ -103,6 +101,10 @@ require("lualine").setup({ options = { theme = "gruvbox" } })
 
 -- nvim-tree file explorer
 require("nvim-tree").setup({
+  update_focused_file = {
+    enable = true,
+    update_root = true, -- ✅ auto-cd into folder of current file
+  },
   hijack_cursor = true,
   view = { width = 30, side = "left" },
   renderer = { icons = { show = { folder = true, file = true } } },
@@ -168,13 +170,15 @@ require("blink.cmp").setup({})
 
 --//////////////////////////////////////////////////////////////////////////////
 -- Key bindings
+vim.keymap.set("n", "<C-s>", ":w<CR>", { desc = "Save file" })
+vim.keymap.set("n", "<C-c>", ":q<CR>", { desc = "Quit window" })
 
 local map = vim.keymap.set
 
 -- Quick access to nvim-tree
 map("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggles the tree open/closed
 map("n", "<C-f>", ":NvimTreeFindFile<CR>") -- find current file in the tree
-map("n", "<C-c>", ":NvimTreeClose<CR>")    -- close the tree
+-- map("n", "<C-c>", ":NvimTreeClose<CR>")    -- close the tree
 
 -- Format the current buffer using conform.nvim
 map("n", "<leader>fo", function() require("conform").format() end)
