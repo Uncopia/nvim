@@ -101,10 +101,6 @@ require("lualine").setup({ options = { theme = "gruvbox" } })
 
 -- nvim-tree file explorer
 require("nvim-tree").setup({
-  update_focused_file = {
-    enable = true,
-    update_root = true, -- ✅ auto-cd into folder of current file
-  },
   hijack_cursor = true,
   view = { width = 30, side = "left" },
   renderer = { icons = { show = { folder = true, file = true } } },
@@ -172,6 +168,8 @@ require("blink.cmp").setup({})
 -- Key bindings
 vim.keymap.set("n", "<C-s>", ":w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<C-c>", ":q<CR>", { desc = "Quit window" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Focus left window" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Focus right window" })
 
 local map = vim.keymap.set
 
